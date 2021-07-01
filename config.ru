@@ -1,6 +1,13 @@
 # This file is used by Rack-based servers to start the application.
 
-require_relative "config/environment"
+map 'http://1ab8bda5433e4ddfb8235895c34887ca.testmyurl.ws/' do
+     run Rails.application.routes.draw do
+       get 'welcome/index'
 
-run Rails.application
-Rails.application.load_server
+       resources :articles do
+         resources:comments
+       end
+
+       root 'welcome#index'
+     end
+end
